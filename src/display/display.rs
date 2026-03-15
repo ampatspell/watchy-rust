@@ -38,7 +38,6 @@ impl Display {
         let cs = Output::new(pins.cs, Level::Low, OutputConfig::default());
         let sck = pins.sck;
         let mosi = pins.mosi;
-        // let miso = pins.miso;
 
         let bus = Spi::new(
             pins.spi,
