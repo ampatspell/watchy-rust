@@ -2,7 +2,7 @@ use defmt::info;
 use embassy_time::{Duration, Timer};
 use embedded_graphics::{
     Drawable,
-    mono_font::{MonoTextStyle, iso_8859_5::FONT_9X18_BOLD},
+    mono_font::{MonoTextStyle, ascii::FONT_10X20},
     prelude::*,
     primitives::{PrimitiveStyle, StyledDrawable},
     text::Text,
@@ -28,8 +28,8 @@ pub async fn display_task(pins: DisplayPins) {
     display.set_lut(RefreshLut::Full);
     clear(&mut display);
 
-    let style = MonoTextStyle::new(&FONT_9X18_BOLD, Color::Black);
-    let  button = str16::from("Watchy v1");
+    let style = MonoTextStyle::new(&FONT_10X20, Color::Black);
+    let  label = str16::from("Watchy v1");
 
     display.update_and_display();
     display.set_lut(RefreshLut::Full);
@@ -37,7 +37,7 @@ pub async fn display_task(pins: DisplayPins) {
     loop {
         clear(&mut display);
 
-        Text::new(button.to_str(), Point::new(10, 25), style)
+        Text::new(label.to_str(), Point::new(10, 25), style)
             .draw(&mut display)
             .unwrap();
 
